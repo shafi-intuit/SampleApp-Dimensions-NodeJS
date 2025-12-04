@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dimentions API Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <main class="page">
+    <!-- Step 1: Connect to QuickBooks -->
+    <section class="card hero" aria-label="Connect to QuickBooks">
+      <div class="hero-content">
+        <h1 class="title">Welcome to Sample app for QuickBooks Dimensions API Demo!</h1>
+        <p class="subtitle">Seamlessly manage your company Dimensions once connected.</p>
+        <button id="connectBtn" class="btn btn-primary" type="button" aria-controls="tabs">
+          Connect to QuickBooks
+        </button>
+      </div>
+    </section>
+
+    <!-- Step 2: View and Select Dimensions -->
+    <section id="tabs" class="card tabs is-hidden" aria-label="Dimension Actions">
+      <div class="step-section">
+        <h2 class="title" align="center">Step 2: View and Select Dimensions</h2>
+        <p class="subtitle" align="center">Click below to load all available dimensions from your QuickBooks
+          company.<br /> <b>NOTE:</b> Your Quickbooks company should have some dimensions created to view them here.
+          <br /> If you don't see any results then first create a few Dimensions from QBO UI.
+          <br /> Refer documentation <a
+            href="https://quickbooks.intuit.com/learn-support/en-us/help-article/class-list/create-user-defined-classes/L3rVkxIuy_US_en_US?uid=mgbew9d4"
+            target="_blank">here</a>
+        </p>
+        <div class="step-action" align="center">
+          <button id="showDimensionsBtn" class="btn btn-primary" type="button">Show All Dimensions</button>
+        </div>
+        <div><br /></div>
+      </div>
+      <div class="step-section">
+        <div id="dimensionsTable" class="dimensions-table-area"></div>
+      </div>
+
+      <!-- Step 3: Generate Invoice using Dimension -->
+      <div id="invoiceFormContainer" class="step-section" style="display:none; margin:2rem 0; text-align:center;">
+        <h2>Step 3: Generate Invoice using Dimension</h2>
+        <form id="invoiceForm" class="invoice-form">
+          <table style="border-style: none;">
+            <tr>
+              <td style="text-align:right;">
+                Select Customer:
+              </td>
+              <td><select id="customerSelect" name="customerSelect" required>
+                  <option value="">Loading...</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align:right;">
+                Selected Dimension ID:
+              </td>
+              <td><input type="text" id="definitionIdInput" name="definitionIdInput" required readonly />
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align:right;">
+                Enter Associated Value (Dimension Value ID):
+                <br />
+                <font size=1>Pick from drilldown IDs at any level</font>
+              </td>
+              <td><input type="text" id="associatedValueInput" name="associatedValueInput" required />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center;" class="btn-group">
+                <button type="submit" class="btn btn-primary">Create Invoice</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div id="invoiceResult" style="margin-top:1rem;"></div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
